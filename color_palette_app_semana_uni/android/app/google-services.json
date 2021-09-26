@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "226024533618",
+    "project_id": "colorpalletapp-semanauni",
+    "storage_bucket": "colorpalletapp-semanauni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226024533618:android:c9b9696df3a0e67a6e1ceb",
+        "android_client_info": {
+          "package_name": "com.example.color_palette_app_semana_uni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226024533618-4dpuevlitjv0jglsdrc0u0919rogptal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKDXD9oJsnLOtblArlkmiXvUYPU-0za2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226024533618-4dpuevlitjv0jglsdrc0u0919rogptal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
