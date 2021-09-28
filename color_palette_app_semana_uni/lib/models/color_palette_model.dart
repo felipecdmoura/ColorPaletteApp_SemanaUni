@@ -8,7 +8,7 @@ class ColorPalette {
   ColorPalette.fromJson(String id, Map<String, dynamic> json){
     this.id = id;
     title = json['title'];
-    colors = json['colors'];
+    colors = json['colors'].cast<int>();
   }
 
   Map<String, dynamic> toJson(){
