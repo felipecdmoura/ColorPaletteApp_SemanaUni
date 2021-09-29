@@ -53,6 +53,20 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
           );
         }
         break;
+      case ColorPaletteDelete:
+        event as ColorPaletteDelete;
+
+        try{
+          final idToDelete = event.id;
+          await colorPaletteFirebase.removeColorPalette(idToDelete);
+
+          yield ColorPaletteDeleted();
+        }catch(e){
+          yield ColorPaletteErrorState(
+            message: 'Erro ao remover dados ao Firebase.'
+          );
+        }
+        break;
       default:
         throw UnimplementedError();
     }
