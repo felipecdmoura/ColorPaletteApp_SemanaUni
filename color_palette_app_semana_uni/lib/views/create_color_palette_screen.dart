@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:color_palette_app_semana_uni/bloc/color_form_bloc/color_form_bloc.dart';
 import 'package:color_palette_app_semana_uni/bloc/color_form_bloc/color_form_bloc_events.dart';
 import 'package:color_palette_app_semana_uni/bloc/color_form_bloc/color_form_bloc_state.dart';
@@ -28,10 +30,25 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
     _controller.text = colorFormBloc.state.title;
     _controller.selection = TextSelection.fromPosition(TextPosition(offset: _controller.text.length));
 
-    AppBar appBar = AppBar(title: Text("Nova Paleta de Cores"), centerTitle: true);
+    AppBar appBar = 
+      AppBar(
+        title: const Text('Nova Paleta de Cores',style: TextStyle(color: Colors.black)), 
+        centerTitle: true, 
+        elevation: 10, 
+        backgroundColor: Colors.white,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.black54,
+          ),
+        ),
+      );
     double screenHeight = MediaQuery.of(context).size.height - 
       appBar.preferredSize.height - 
-      MediaQuery.of(context).padding.top;
+      MediaQuery.of(context).padding.top - 10;
 
     return Scaffold(
       appBar: appBar,
@@ -71,8 +88,8 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
               iconSize: 80,
             ),
             SizedBox(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
+              height: 90,
+              width: 350,
               child: ElevatedButton(
                 onPressed: (){
                   widget.editing ? editExistingColorPalette(colorFormBloc.state) : saveNewColorPalette(colorFormBloc.state);
@@ -82,7 +99,7 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(50),
                     side: BorderSide(color: Colors.black),
                   )
                 ),
@@ -115,8 +132,6 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
     List<int> colors = colorFormBloc.state.colors;
     final newColorPalette = ColorPalette(id: '', colors: colors, title: _controller.text);
 
-    ColorPaletteBloc colorPaletteBloc = BlocProvider.of<ColorPaletteBloc>(context);
-
-    colorPaletteBloc.add(ColorPaletteCreate(newColorPalette));
+    BlocProvider.of<ColorPaletteBloc>(context).add(ColorPaletteCreate(newColorPalette));
   }
 }

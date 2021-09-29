@@ -18,13 +18,11 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
         yield ColorPaletteLoading();
         List<ColorPalette> colorPaletteList = 
           await colorPaletteFirebase.getColorPalettes();
-
         if (colorPaletteList.isEmpty) {
           yield ColorPaletteEmptyList();
         }else{
           yield ColorPaletteLoaded(list: colorPaletteList);
         }
-      
         break;
       case ColorPaletteEdit:
         event as ColorPaletteEdit;

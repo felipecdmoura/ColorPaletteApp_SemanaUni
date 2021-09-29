@@ -15,7 +15,7 @@ class ColorPaletteFirebase {
 
   Future<List<ColorPalette>> getColorPalettes() async{
     QuerySnapshot snapshot = 
-      await _firebaseFirestore.collection('color_palette').get();
+      await _firebaseFirestore.collection('color_palettes').get();
 
     List<ColorPalette> colorPalettes = [];
 

@@ -16,7 +16,12 @@ class ColorField extends StatelessWidget {
         Color color = Color(state.colors[index]).withAlpha(0xff);
         return Container(
           padding: EdgeInsets.all(10),
-          color: color,
+          //color: color,
+          width: 370,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.all(Radius.circular(40))
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -30,7 +35,7 @@ class ColorField extends StatelessWidget {
                     index: index)
                   );
                 }, 
-                icon: Icon(Icons.refresh_rounded)
+                icon: Icon(Icons.refresh_rounded),
               ),
             ],
           ),
