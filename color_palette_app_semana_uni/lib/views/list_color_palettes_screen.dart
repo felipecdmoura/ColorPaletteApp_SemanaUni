@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// Pagina inicial, quando ao menos uma paleta esta adicionada.
 class ListColorPalettes extends StatefulWidget {
   const ListColorPalettes({Key? key}) : super(key: key);
 
@@ -61,7 +62,7 @@ class _ListColorPalettesState extends State<ListColorPalettes> {
                           title: 'Nova Paleta')),
                 )
               ],
-              child: CreateColorPaletteScreen(editing: false),
+              child: CreateColorPaletteScreen(editing: false), // editing vai como false, foi estamos criando uma paleta nova, nao editando uma nova.
             );
           }));
         },
@@ -86,6 +87,9 @@ class _ListColorPalettesState extends State<ListColorPalettes> {
                   //Chama o metodo ao realizar o swipe da paleta
                   onDismissed: (_) {
                     removeColorPalette(state.list[index].id);
+                    // Mostra uma snackbar dizendo que a paleta foi deletada.
+                    ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('"${state.list[index].title}" deletada!')));
                   },
                   //Fundo que aparece durante o swipe 
                   background: Container(color: Colors.grey),
@@ -117,7 +121,7 @@ class _ListColorPalettesState extends State<ListColorPalettes> {
                                   title: paletteTitle,
                                   id: paletteId));
                             }),
-                          ], child: CreateColorPaletteScreen(editing: true));
+                          ], child: CreateColorPaletteScreen(editing: true));// Editing vai como true, pois estamos editando uma paleta existente.
                         },
                       ));
                     },
@@ -146,6 +150,7 @@ class _ListColorPalettesState extends State<ListColorPalettes> {
     );
   }
 
+  // Metodo para gerar os circulos com as cores da paleta, abaixo do nome.
   List<Widget> colorCircles(List<int> colors) {
     List<Widget> circleslist = [];
 

@@ -14,6 +14,7 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
  @override
   Stream<ColorPaletteState> mapEventToState(ColorPaletteEvent event) async* {
     switch (event.runtimeType) {
+      // Case para receber do firebase todas as paletas cadastradas, e exibi-las na tela principal. 
       case ColorPaletteFetchList:
         yield ColorPaletteLoading();
         List<ColorPalette> colorPaletteList = 
@@ -24,6 +25,7 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
           yield ColorPaletteLoaded(list: colorPaletteList);
         }
         break;
+      // Case para quando o evento acionado, for de editar uma paleta selecionada.
       case ColorPaletteEdit:
         event as ColorPaletteEdit;
 
@@ -39,6 +41,7 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
           );
         }
         break;
+      // Case para quando o evento acionado, for de adicionar uma nova paleta.
       case ColorPaletteCreate:
         event as ColorPaletteCreate;
 
@@ -53,6 +56,7 @@ class ColorPaletteBloc extends Bloc<ColorPaletteEvent, ColorPaletteState>{
           );
         }
         break;
+      // Case para quando o evento acionado, for de deletar uma paleta selecionada.
       case ColorPaletteDelete:
         event as ColorPaletteDelete;
 

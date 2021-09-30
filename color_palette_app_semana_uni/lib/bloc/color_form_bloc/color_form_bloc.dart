@@ -10,6 +10,7 @@ class ColorFormBloc extends Bloc<ColorFormEvents, ColorFormState>{
   @override
   Stream<ColorFormState> mapEventToState(ColorFormEvents event) async*{
     switch (event.runtimeType) {
+      // Case para quando se randomiza apenas uma das cores da paleta.
       case ChangeColorFormEvents :
         event as ChangeColorFormEvents;
 
@@ -23,6 +24,7 @@ class ColorFormBloc extends Bloc<ColorFormEvents, ColorFormState>{
         }
         yield state;
         break;
+      // Case para quando se randomiza todas as cores de uma paleta.
       case RandomizeColorFormEvents:
         event as RandomizeColorFormEvents;
 

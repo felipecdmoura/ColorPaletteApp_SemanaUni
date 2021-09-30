@@ -94,6 +94,8 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
                 onPressed: (){
                   widget.editing ? editExistingColorPalette(colorFormBloc.state) : saveNewColorPalette(colorFormBloc.state);
                   Navigator.of(context).pop();
+
+                 
                 },
                 child: Text("Salvar"),
                 style: ElevatedButton.styleFrom(
@@ -126,6 +128,10 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
     ColorPaletteBloc colorPaletteBloc = BlocProvider.of<ColorPaletteBloc>(context);
 
     colorPaletteBloc.add(ColorPaletteEdit(newColorPalette));
+
+    // Mostra uma snackbar dizendo que a paleta foi editada.
+    ScaffoldMessenger.of(context)
+      .showSnackBar(SnackBar(content: Text('"${colorFormBloc.state.title}" editada!')));
   }
 
   void saveNewColorPalette(ColorFormState state) {
@@ -133,5 +139,9 @@ class _CreateColorPaletteScreenState extends State<CreateColorPaletteScreen> {
     final newColorPalette = ColorPalette(id: '', colors: colors, title: _controller.text);
 
     BlocProvider.of<ColorPaletteBloc>(context).add(ColorPaletteCreate(newColorPalette));
+
+    // Mostra uma snackbar dizendo que a paleta foi adicionada.
+    ScaffoldMessenger.of(context)
+      .showSnackBar(SnackBar(content: Text('"${colorFormBloc.state.title}" adicionada!')));
   }
 }
